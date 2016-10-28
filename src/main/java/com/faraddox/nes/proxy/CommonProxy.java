@@ -1,11 +1,12 @@
 package com.faraddox.nes.proxy;
 
 import com.faraddox.nes.NES;
-import com.faraddox.nes.event.NESEventHandler;
+import com.faraddox.nes.NESConfig;
+import com.faraddox.nes.event.NESCommonEventHandler;
 import com.faraddox.nes.gui.NESGuiHandler;
+import com.faraddox.nes.network.SkillSyncMessage;
 import com.faraddox.nes.skill.farmer.FarmerSkillGroup;
 import com.faraddox.nes.skill.miner.MinerSkillGroup;
-import com.faraddox.nes.skill.NESPlayerSkills;
 import com.faraddox.nes.skill.SkillCapability;
 import com.faraddox.nes.skill.farmer.FarmerExample;
 import com.faraddox.nes.skill.farmer.FarmerGrowing;
@@ -17,10 +18,12 @@ import com.faraddox.nes.skill.warrior.WarriorAttack;
 import com.faraddox.nes.skill.warrior.WarriorDefence;
 import com.faraddox.nes.skill.warrior.WarriorSkillGroup;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 import static com.faraddox.nes.util.Logger.LOG;
 import static com.faraddox.nes.skill.NESPlayerSkills.registerSkillClass;
@@ -31,12 +34,13 @@ import static com.faraddox.nes.skill.NESPlayerSkills.registerSkillClass;
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-
+        NES.networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("SkillSyncChannel");
+        NES.networkWrapper.registerMessage(SkillSyncMessage.SkillSyncHandler.class, SkillSyncMessage.class, 0, Side.CLIENT);
+        NESConfig.CLIENT_CONF = new Configuration(event.getSuggestedConfigurationFile());
         LOG("PreInit complete");
     }
 
     public void init(FMLInitializationEvent event) {
-        reg(NESEventHandler.INSTANCE);
         SkillCapability.register();
         //----Registering Miner skills and event handlers
         reg(new MinerSkillGroup.MinerSkillGroupHandler());
@@ -68,11 +72,15 @@ public class CommonProxy {
 
         //----Registering Craftsman skills and event handlers
 
+
+
+        NESConfig.sync();
         LOG("Init complete");
     }
 
     public void postInit(FMLPostInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(NES.instance, new NESGuiHandler());
+
         LOG("PostInit complete");
     }
 

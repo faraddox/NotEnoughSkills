@@ -1,6 +1,8 @@
 package com.faraddox.nes.skill;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static com.faraddox.nes.util.Logger.LOG;
 
@@ -10,6 +12,7 @@ import static com.faraddox.nes.util.Logger.LOG;
 public abstract class Skill {
     protected AbstractSkillGroup parentGroup;
     protected int currentPoints = 0;
+    protected int maxPoints = 0;
 
     public Skill (AbstractSkillGroup _parentGroup) {this(_parentGroup, 0);}
     public Skill (AbstractSkillGroup _parentGroup, int _currentPoints) {
@@ -27,4 +30,5 @@ public abstract class Skill {
     public int getCurrentPoints() {return currentPoints;}
     public void setCurrentPoints(int _currentPoints) {currentPoints = _currentPoints;}
     public EntityPlayer getPlayer() {return parentGroup.getPlayer();}
+
 }

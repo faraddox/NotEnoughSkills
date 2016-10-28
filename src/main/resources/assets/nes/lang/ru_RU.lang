@@ -1,7 +1,7 @@
 gui.nes.accept=Применить
 gui.nes.cancel=Отменить
 gui.nes.level=Уровень
-gui.nes.freepoints=Очки скиллов
+gui.nes.freepoints=Очки умений
 nes:miner=Шахтёр
 nes:farmer=Фермер
 nes:warrior=Вояка

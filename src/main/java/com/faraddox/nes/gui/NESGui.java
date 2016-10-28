@@ -154,12 +154,13 @@ public class NESGui extends GuiScreen {
         //---------------write level
         String level = format("gui.nes.level") + ": " + sg.getCurrentLevel() + "/" + sg.getMaxLevel();
         this.fontRendererObj.drawString(level, guiX + 52, guiY + 12, 0xdddd00, true);
+        this.fontRendererObj.drawString(format("gui.nes.freepoints: " + sg.getFreePoints()), guiX + 52, guiY + 20, 0xdddd00, true);
         this.mc.getTextureManager().bindTexture(texture);
         //---------------draw xp line 186px
         String xp = sg.getXP() + "/" + sg.getXPForNextLevel();
         int  perc = (sg.getXP() * 100) / sg.getXPForNextLevel();
-        this.drawTexturedModalRect(guiX + 52, guiY + 24, 0, 24, 186 , 5);
-        this.drawTexturedModalRect(guiX + 52, guiY + 24, 0, 29, 186 * perc / 100, 5);
+        this.drawTexturedModalRect(guiX + 52, guiY + 32, 0, 24, 186 , 5);
+        this.drawTexturedModalRect(guiX + 52, guiY + 32, 0, 29, 186 * perc / 100, 5);
         this.fontRendererObj.drawStringWithShadow(xp, guiX + 135, 24, 0xdddddd);
 
         //---------------draw string

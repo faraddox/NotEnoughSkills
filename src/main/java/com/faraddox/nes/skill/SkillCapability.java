@@ -6,6 +6,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -17,6 +18,9 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -63,7 +67,8 @@ public class SkillCapability {
         @SubscribeEvent
         public void attachCapabilities(AttachCapabilitiesEvent.Entity event) {
             if (event.getEntity() instanceof EntityPlayer) {
-                final NESPlayerSkills skills = new NESPlayerSkills((EntityPlayer)event.getEntity());
+                EntityPlayer player = (EntityPlayer) event.getEntity();
+                final NESPlayerSkills skills = new NESPlayerSkills(player);
                 event.addCapability(ID, createProvider(skills));
                 LOG("Capability added");
             }

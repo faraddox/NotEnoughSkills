@@ -1,5 +1,6 @@
 package com.faraddox.nes;
 
+import com.faraddox.nes.event.NESServerEventHandler;
 import com.faraddox.nes.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 /**
  * Created by faraddox on 27.10.2016.
@@ -26,6 +28,7 @@ public class NES {
     public static final String MODID = "nes";
     public static final String MODNAME = "NorEnoughSkills";
     public static final String MODVERSION = "0.0a";
+    public static SimpleNetworkWrapper networkWrapper;
 
     @Mod.Instance(MODID)
     public static NES instance;
@@ -51,6 +54,7 @@ public class NES {
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new NESCommand());
+        NESServerEventHandler.serverInstance = event.getServer();
     }
 
 
