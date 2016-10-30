@@ -1,0 +1,17 @@
+[
+{
+  "modid": "nes",
+  "name": "NotEnoughSkills",
+  "description": "Do it, level up it!",
+  "version": "$version",
+  "mcversion": "$mcversion",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["faraddox"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "parent" : ""
+}
+]
