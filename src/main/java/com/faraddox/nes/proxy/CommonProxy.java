@@ -6,17 +6,13 @@ import com.faraddox.nes.gui.NESGuiHandler;
 import com.faraddox.nes.network.SkillSyncPacket;
 import com.faraddox.nes.network.SpendPointsPacket;
 import com.faraddox.nes.skill.farmer.FarmerSkillGroup;
-import com.faraddox.nes.skill.miner.MinerSkillGroup;
+import com.faraddox.nes.skill.farmer.HoeRadius;
+import com.faraddox.nes.skill.miner.*;
 import com.faraddox.nes.skill.SkillCapability;
-import com.faraddox.nes.skill.farmer.FarmerExample;
-import com.faraddox.nes.skill.farmer.FarmerGrowing;
-import com.faraddox.nes.skill.farmer.FarmerHarvesting;
-import com.faraddox.nes.skill.miner.MinerDurability;
-import com.faraddox.nes.skill.miner.MinerLuck;
-import com.faraddox.nes.skill.miner.MinerEfficiency;
-import com.faraddox.nes.skill.warrior.WarriorAttack;
-import com.faraddox.nes.skill.warrior.WarriorDefence;
-import com.faraddox.nes.skill.warrior.WarriorSkillGroup;
+import com.faraddox.nes.skill.farmer.Growing;
+import com.faraddox.nes.skill.farmer.Harvesting;
+import com.faraddox.nes.skill.miner.Durability;
+import com.faraddox.nes.skill.warrior.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -46,31 +42,38 @@ public class CommonProxy {
         SkillCapability.register();
         //----Registering Miner skills and event handlers
         reg(new MinerSkillGroup.MinerSkillGroupHandler());
-       registerSkillClass(MinerSkillGroup.class, MinerLuck.class);
-        reg(new MinerLuck.MinerLuckHandler());
-        registerSkillClass(MinerSkillGroup.class, MinerEfficiency.class);
-        reg(new MinerEfficiency.MinerEfficiencyHandler());
-        registerSkillClass(MinerSkillGroup.class, MinerDurability.class);
-        reg(new MinerDurability.MinerDurabilityHandler());
+       registerSkillClass(MinerSkillGroup.class, Luck.class);
+        reg(new Luck.MinerLuckHandler());
+        registerSkillClass(MinerSkillGroup.class, Efficiency.class);
+        reg(new Efficiency.MinerEfficiencyHandler());
+        registerSkillClass(MinerSkillGroup.class, Durability.class);
+        reg(new Durability.MinerDurabilityHandler());
+        registerSkillClass(MinerSkillGroup.class, NightVision.class);
+        reg(new NightVision.MinerNightVisionHandler());
 
 
         //----Registering Warrior skills and event handlers
         reg(new WarriorSkillGroup.WarriorSkillGroupHandler());
-        registerSkillClass(WarriorSkillGroup.class, WarriorAttack.class);
-        reg(new WarriorAttack.WarriorAttackHandler());
-        registerSkillClass(WarriorSkillGroup.class, WarriorDefence.class);
-        reg(new WarriorDefence.WarriorDefenceHandler());
+        registerSkillClass(WarriorSkillGroup.class, RunAttack.class);
+        reg(new RunAttack.RunAttackHandler());
+        registerSkillClass(WarriorSkillGroup.class, SneakKnockback.class);
+        reg(new SneakKnockback.SneakKnockbackHandler());
+        registerSkillClass(WarriorSkillGroup.class, JumpAttack.class);
+        reg(new JumpAttack.JumpAttackHandler());
+        registerSkillClass(WarriorSkillGroup.class, ShieldMovingSpeed.class);
+        reg(new ShieldMovingSpeed.ShieldMovingSpeedHandler());
+
 
         //----Registering Stranger skills and event handlers
 
         //----Registering Farmer skills and event handlers
         reg(new FarmerSkillGroup.FarmerSkillGroupHandler());
-        registerSkillClass(FarmerSkillGroup.class, FarmerExample.class);
-        reg(new FarmerExample.FarmerExampleHandler());
-        registerSkillClass(FarmerSkillGroup.class, FarmerGrowing.class);
-        reg(new FarmerGrowing.FarmerGrowingHandler());
-        registerSkillClass(FarmerSkillGroup.class, FarmerHarvesting.class);
-        reg(new FarmerHarvesting.FarmerHarvestingHandler());
+        registerSkillClass(FarmerSkillGroup.class, HoeRadius.class);
+        reg(new HoeRadius.HoeRadiusHandler());
+        registerSkillClass(FarmerSkillGroup.class, Growing.class);
+        reg(new Growing.GrowingHandler());
+        registerSkillClass(FarmerSkillGroup.class, Harvesting.class);
+        reg(new Harvesting.HarvestingHandler());
 
         //----Registering Craftsman skills and event handlers
 

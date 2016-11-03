@@ -33,7 +33,7 @@ public class NESGuiSkillGroup extends NESGuiScroll {
                 _parent.height);    // screenHeight
         parent = _parent;
         skillGroupList = _skillGroupList;
-        slotHeight = 20;
+        slotHeight = 36;
     }
 
     @Override
@@ -82,10 +82,13 @@ public class NESGuiSkillGroup extends NESGuiScroll {
             parent.mc.getTextureManager().bindTexture(parent.elements);
             int posY = (selectedIndex == slotIdx) ? 84 : 104;
             if (!sg.isEnabled()) posY = 124;
-            parent.drawTexturedModalRect(left + 7, slotTop, 0, posY, entryWidth, 20);
+            parent.drawTexturedModalRect(left + 11, slotTop, 0, posY, entryWidth, 3);
+            for (int i = 3; i < 34; i++)
+                parent.drawTexturedModalRect(left + 11, slotTop + i, 0, posY + 3, entryWidth, 1);
+            parent.drawTexturedModalRect(left + 11, slotTop + 34, 0, posY + 17, entryWidth, 3);
             parent.mc.getTextureManager().bindTexture(sg.getIcons());
-            parent.drawTexturedModalRect(left + 9, slotTop + 2, 0, 0, 16, 16);
-            parent.mc.fontRendererObj.drawString(format(sg.getFullGroupName()), left + 27, slotTop + 5, 0xffffff, true);
+            parent.drawTexturedModalRect(left + 13, slotTop + 2, 0, 0, 32, 32);
+            parent.mc.fontRendererObj.drawString(format(sg.getFullGroupName()), left + 47, slotTop + 15, 0xffffff, true);
         }
     }
 

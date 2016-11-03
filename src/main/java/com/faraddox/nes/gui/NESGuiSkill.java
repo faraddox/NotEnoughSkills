@@ -175,22 +175,22 @@ public class NESGuiSkill extends NESGuiScroll {
                 //-------------draw icon
                 parent.mc.getTextureManager().bindTexture(skillGroup.getIcons());
 //        parent.drawTexturedModalRect(left + 9, slotTop + 2, skill.getIconX(), skill.getIconY(), 16, 16);
-                parent.drawTexturedModalRect(left + 5, slotTop + 2, 0, 0, 16, 16);
+                parent.drawTexturedModalRect(left + 7, slotTop + 4, skill.getIconX(), skill.getIconY(), 32, 32);
                 //-------------draw name
-                parent.mc.fontRendererObj.drawString(format(skill.getFullSkillName()), left + 23, slotTop + 5, 0xffffff, true);
+                parent.mc.fontRendererObj.drawString(format(skill.getFullSkillName()), left + 41, slotTop + 7, 0xffffff, true);
                 //-------------draw desc
                 String desc = format(skill.getFullSkillName() + ".desc");
-                parent.mc.fontRendererObj.drawSplitString(desc, left + 10, slotTop + 20, 233, 0xffffff);
+                parent.mc.fontRendererObj.drawSplitString(desc, left + 10, slotTop + 36, 225, 0xffffff);
                 //-------------draw points
                 int points = skill.getCurrentPoints() + spendedPoints.get(skill);
-                parent.mc.fontRendererObj.drawString("" + points + "/" + skill.getMaxPoints(), entryRight - 50, slotTop + 5, 0xffffff, true);
+                parent.mc.fontRendererObj.drawString("" + points + "/" + skill.getMaxPoints(), entryRight - 55, slotTop + 8, 0xffffff, true);
                 //-------------draw buttons
                 SkillButton bPlus = plusButtons.get(skill);
                 SkillButton bMinus = minusButtons.get(skill);
                 bPlus.enabled = (canSpendPoints.get(skillGroup) > 0);
                 bMinus.enabled = (spendedPoints.get(skill) > 0);
-                bPlus.drawButton(entryRight - 35, slotTop + 5);
-                bMinus.drawButton(entryRight - 75, slotTop + 5);
+                bPlus.drawButton(entryRight - 35, slotTop + 7);
+                bMinus.drawButton(entryRight - 75, slotTop + 7);
 
             }
         }
@@ -212,7 +212,7 @@ public class NESGuiSkill extends NESGuiScroll {
     }
 
     protected int getEntryHeight(Skill skill) {
-        return parent.mc.fontRendererObj.splitStringWidth(format(skill.getFullSkillName() + ".desc"), listWidth - 30) + 32;
+        return parent.mc.fontRendererObj.splitStringWidth(format(skill.getFullSkillName() + ".desc"), 225) + 48;
     }
 
     @Override
@@ -220,7 +220,7 @@ public class NESGuiSkill extends NESGuiScroll {
         if (getCurrentGroup() > -1 && getCurrentGroup() < skillGroupList.size()) {
             AbstractSkillGroup sg = skillGroupList.get(getCurrentGroup());
             if (sg == null) return 0;
-            return parent.mc.fontRendererObj.splitStringWidth(format(sg.getSkills().get(index).getFullSkillName() + ".desc"), listWidth - 30) + 32;
+            return parent.mc.fontRendererObj.splitStringWidth(format(sg.getSkills().get(index).getFullSkillName() + ".desc"), 225) + 48;
         }
         return 0;
     }
@@ -228,7 +228,7 @@ public class NESGuiSkill extends NESGuiScroll {
     protected int getHeaderHeight() {
         int size = 0;
         if (getCurrentGroup() > -1 && getCurrentGroup() < skillGroupList.size())
-            size = parent.mc.fontRendererObj.splitStringWidth(format(skillGroupList.get(getCurrentGroup()).getFullGroupName() + ".desc"), listWidth - 30) + 55;
+            size = parent.mc.fontRendererObj.splitStringWidth(format(skillGroupList.get(getCurrentGroup()).getFullGroupName() + ".desc"), listWidth - 30) + 71;
         return size;
     }
 

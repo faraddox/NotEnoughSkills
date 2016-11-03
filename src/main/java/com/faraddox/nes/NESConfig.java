@@ -24,6 +24,7 @@ public class NESConfig {
     public static Map<String, Integer> skillCaps = new HashMap<>();
     public static Property bonusOres;
     public static Property openGuiKey;
+    public static boolean showNBTinTooltips;
 
     public static void sync() {
         List<AbstractSkillGroup> skillGroups = nullInstance.getPlayerSkillGroups();
@@ -32,6 +33,7 @@ public class NESConfig {
         CLIENT_CONF.addCustomCategoryComment("hud", "Client side only.");
         hudProperties.add(CLIENT_CONF.get("hud", "enable_hud", true, "Not implemented now").setRequiresMcRestart(true));
         hudProperties.add(CLIENT_CONF.get("hud", "hud_position", 0, "Not implemented now"));
+        showNBTinTooltips = CLIENT_CONF.getBoolean("show_tooltip", "hud" , false, "show NBT-tags in item tooltips");
         //-----Keys
         CLIENT_CONF.addCustomCategoryComment("keys", "Client side only.");
         openGuiKey = CLIENT_CONF.get("keys", "open.gui.key", Keyboard.KEY_K, "Not implemented now");

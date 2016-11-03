@@ -1,6 +1,7 @@
 package com.faraddox.nes.skill;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,6 +35,14 @@ public abstract class Skill {
         if (currentPoints + points <= getMaxPoints()) {
             currentPoints += points;
             return true;
+        }
+        return false;
+    }
+    public static boolean checkForTool(EntityPlayer player, String tool) {
+        if (player != null) {
+            ItemStack is = player.getHeldItemMainhand();
+            if (is != null)
+                return is.getItem().getToolClasses(null).contains(tool);
         }
         return false;
     }

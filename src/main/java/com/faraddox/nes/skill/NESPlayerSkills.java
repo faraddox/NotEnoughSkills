@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -27,6 +28,7 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
     private static Multimap<Class<? extends AbstractSkillGroup>, Class<? extends Skill>> _skillSystem = ArrayListMultimap.create();
     public static Map<String, Integer> skillIds = new HashMap<>();
     private static int index = 0;
+    public static World world;
 
     private final EntityPlayer player;
     private List<AbstractSkillGroup> skillGroups = new ArrayList<>();
@@ -35,17 +37,17 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
         player = _player;
         String name = "nullProfile";
         if (player != null && player.getGameProfile() != null) name = player.getName();
-        LOG("Creating skills for " + name);
+//        LOG("Creating skills for " + name);
         _skillSystem.keySet().forEach((Class<? extends AbstractSkillGroup> sgc) -> {
             try {
                 AbstractSkillGroup sg = sgc.getDeclaredConstructor(this.getClass()).newInstance(this);
-                LOG("Created skill group " + sg.getFullGroupName());
+//                LOG("Created skill group " + sg.getFullGroupName());
                 _skillSystem.get(sgc).forEach((Class<? extends Skill> sc) -> {
                     try {
                         Skill s = sc.getDeclaredConstructor(AbstractSkillGroup.class).newInstance(sg);
-                        LOG("Created skill " + s.getFullSkillName());
+//                        LOG("Created skill " + s.getFullSkillName());
                         sg.addSkill(s);
-                        LOG("Skill " + s.getFullSkillName() + " added into group " + sg.getFullGroupName());
+//                        LOG("Skill " + s.getFullSkillName() + " added into group " + sg.getFullGroupName());
                     } catch (InstantiationException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
@@ -57,7 +59,7 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
                     }
                 });
                 skillGroups.add(sg);
-                LOG("Group " + sg.getFullGroupName() + " added");
+//                LOG("Group " + sg.getFullGroupName() + " added");
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -77,12 +79,12 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
     }
 
     public static void syncSkills() {
-        LOG("Sync skills");
+//        LOG("Sync skills");
 //        EntityPlayerMP entityPlayerMP = NESServerEventHandler.serverInstance.getPlayerList().getPlayerByUUID(player.getUniqueID());
 //        LOG("Player: " + (entityPlayerMP == null ? "null" : entityPlayerMP.getCachedUniqueIdString()));
 //        NES.skillSyncChannel.sendTo(new SkillSyncPacket(this.skillGroups), entityPlayerMP);
         for (EntityPlayerMP entityPlayerMP : NESServerEventHandler.serverInstance.getPlayerList().getPlayerList()) {
-            LOG("Sync " + SkillCapability.getPlayerSkills(entityPlayerMP).getPlayerSkillGroups().size() + " groups");
+//            LOG("Sync " + SkillCapability.getPlayerSkills(entityPlayerMP).getPlayerSkillGroups().size() + " groups");
             if (NES.skillSyncChannel == null) LOG("null channel");
             NES.skillSyncChannel.sendTo(new SkillSyncPacket(SkillCapability.getPlayerSkills(entityPlayerMP).getPlayerSkillGroups()), entityPlayerMP);
         }
@@ -121,7 +123,7 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
     public NBTTagCompound saveToNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
         skillGroups.forEach((AbstractSkillGroup sg) -> sg.saveToNBT(nbt));
-        LOG("NBT saving: " + nbt);
+//        LOG("NBT saving: " + nbt);
         NBTTagCompound result = new NBTTagCompound();
         result.setTag(player.getCachedUniqueIdString(), nbt);
         return result;
@@ -129,7 +131,7 @@ public class NESPlayerSkills implements SkillCapability.ISkillCapability {
 
     @Override
     public void loadFromNBT(NBTTagCompound nbt) {
-        LOG("NBT loading: " + nbt);
+//        LOG("NBT loading: " + nbt);
         NBTTagCompound toGetFrom = nbt.getCompoundTag(player.getCachedUniqueIdString());
         LOG(player.getCachedUniqueIdString());
         //faraddox 29e30536-8467-330d-a144-5b1d0b32dbbb

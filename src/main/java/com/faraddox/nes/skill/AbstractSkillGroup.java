@@ -18,7 +18,7 @@ public abstract class AbstractSkillGroup {
     protected List<Skill> skills = new ArrayList<>();
     protected NESPlayerSkills parent;
     protected int xp;
-    protected int[] xpTable = new int[]{50, 100, 150, 200, 250};
+    protected int[] xpTable = new int[]{50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000};
     protected int currentLevel = 0;
     protected int freePoints = 0;
     protected ResourceLocation icons;
@@ -26,7 +26,7 @@ public abstract class AbstractSkillGroup {
     public AbstractSkillGroup(NESPlayerSkills _parent) {
         parent = _parent;
         icons = new ResourceLocation(NES.MODID, "textures/gui/" + getGroupName() + ".png");
-        LOG("Added skill group: " + getFullGroupName());
+//        LOG("Added skill group: " + getFullGroupName());
     }
 
     public void addSkill(Skill skill) {
@@ -47,7 +47,11 @@ public abstract class AbstractSkillGroup {
     public void setXpTable(int[] _xpTable){xpTable = _xpTable;}
     public int getMaxLevel() {return xpTable.length;}
     public int getXP() {return xp;}
-    public int getXPForNextLevel() { if (currentLevel != getMaxLevel()) return xpTable[currentLevel]; else return xpTable[getMaxLevel() - 1];}
+    public int getXPForNextLevel() {
+        if (currentLevel < getMaxLevel())
+            return xpTable[currentLevel];
+        else
+            return xpTable[xpTable.length - 1];}
     public int addXP(int _xp) {xp += _xp; checkLevel(); return xp;}
     public void setXP(int _xp) {xp = _xp;}
     public void checkLevel() {

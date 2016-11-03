@@ -30,9 +30,9 @@ public class SkillSyncPacket implements IMessage{
     @SideOnly(Side.CLIENT)
     @Override
     public void fromBytes(ByteBuf buf) {
-//        EntityPlayer p = Minecraft.getMinecraft().thePlayer;
-//        if (!p.hasCapability(SkillCapability.SKILL_CAPABILITY, SkillCapability.DEFAULT_FACING))
-//            MinecraftForge.EVENT_BUS.post(new AttachCapabilitiesEvent(AttachCapabilitiesEvent.class, p));
+        EntityPlayer p = Minecraft.getMinecraft().thePlayer;
+        if (!p.hasCapability(SkillCapability.SKILL_CAPABILITY, SkillCapability.DEFAULT_FACING))
+            MinecraftForge.EVENT_BUS.post(new AttachCapabilitiesEvent(AttachCapabilitiesEvent.class, p));
         skillGroups = SkillCapability.getPlayerSkills(Minecraft.getMinecraft().thePlayer).getPlayerSkillGroups();
 
 //        int skillGroupCount = buf.getInt(index++);

@@ -1,18 +1,43 @@
 gui.nes.spend=Применить
-gui.nes.reset=Сбросить
+gui.nes.reset=Отменить
 gui.nes.level=Уровень
 gui.nes.freepoints=Очки умений
 nes:miner=Шахтёр
-nes:farmer=Фермер
-nes:warrior=Вояка
-nes:stranger=Бродяга
-nes:craftsman=Ремесленник
 nes:miner.desc=Чтобы сделать хороший меч или броню, а может - просто зажигалку, нужна руда. Постоянно нужна руда. Много руды. Со временем, от продолжительного нахождения в шахтах, Вы начинаете лучше видеть в темноте. Ваши новые инстинкты помогают Вам в добыче ископаемых. Кто знает, чему ещё Вы сможете научиться под землёй?
-nes:farmer.desc=fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkasdf sdfsadf
-nes:warrior.desc=fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkjglkjf asasd fgflkgafkdvbdffgdfg sdffghsdfs sdfsfsadf sdfasdfasdf sdfsadf
 nes:miner.minerdurability=Прочность инструмента
 nes:miner.minerefficiency=Эффективность инструмента
-nes:miner.minerluck=Шахтёрская удача
+nes:miner.minerluck=Хоть тут повезло
+nes:miner.minernightvision=Зрячий, как крот
 nes:miner.minerdurability.desc=Вы знаете, как правильно следить за инструментом, а значит он послужит Вам немного дольше, чем в руках новичка.
 nes:miner.minerefficiency.desc=Ваши руки давно покрылись мозолями, зато Вы теперь держите инструмент уверенней.
 nes:miner.minerluck.desc=Шахтёрская удача или обострившаяся интуиция? Не всё ли равно, если это помогает Вам находить богатые залежи руды?
+nes:miner.minernightvision.desc=Вы так много времени провели под землёй, что, кажется, стали лучше видеть в темноте. А может и правда, только кажется?
+nes:miner.minerdurability.tooltip=Каждое очко повышает шанс сохранить прочность кирки.
+nes:miner.minerefficiency.tooltip=Ваша скорость умножается на (1 + очки / 5).
+nes:miner.minerluck.tooltip=За каждое очко вы можете получить дополнительный множитель дропа.
+nes:miner.minernightvision.tooltip=Стоит вам разбить камень, как вы получаете эффект Ночного зрения на (10 * очки) секунд.
+nes:warrior=Вояка
+nes:warrior.desc=
+nes:warrior.warriorjumpattack=Почти ассассин
+nes:warrior.warriorrunattack=Бегущий с лезвием
+nes:warrior.warriorshieldmovingspeed=Башня на колёсиках
+nes:warrior.warriorsneakknockback=Големский приёмчик
+nes:warrior.warriorjumpattack.desc=
+nes:warrior.warriorrunattack.desc=
+nes:warrior.warriorshieldmovingspeed.desc=
+nes:warrior.warriorsneakknockback.desc=
+nes:warrior.warriorjumpattack.tooltip=
+nes:warrior.warriorrunattack.tooltip=
+nes:warrior.warriorshieldmovingspeed.tooltip=
+nes:warrior.warriorsneakknockback.tooltip=
+nes:farmer=Фермер
+nes:farmer.desc=
+
+nes:stranger=Бродяга
+nes:stranger.desc=
+
+nes:craftsman=Ремесленник
+nes:craftsman.desc=
+
+
+
